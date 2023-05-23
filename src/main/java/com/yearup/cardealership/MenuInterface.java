@@ -268,21 +268,37 @@ public class MenuInterface {
         String customerName = scanner.nextLine();
         System.out.println("What is your email address?");
         String customerEmail = scanner.nextLine();
-        System.out.println("Which vehicle do you want to buy? (Enter VIN)");
-        String chosenVehicle = scanner.nextLine();
-        Vehicle v = dealership.getVehicleByVin(chosenVehicle);
+        System.out.println("Do you want to lease or buy?(Enter lease/buy)");
+        String leaseOrBuy = scanner.nextLine().toLowerCase();
+        if (leaseOrBuy.equals("buy")) {
+            System.out.println("Which vehicle do you want to buy? (Enter VIN)");
+            String chosenVehicle = scanner.nextLine();
+            Vehicle v = dealership.getVehicleByVin(chosenVehicle);
 
-        String financeOrNot;
-        System.out.println("Do you want to finance the car? (y/n)");
-        financeOrNot = scanner.nextLine().toLowerCase();
-        boolean finance = financeOrNot.equals("y");
-        SalesContract salesContract = new SalesContract(date, customerName,
-                customerEmail, v, finance);
-        double monthlyPayment = salesContract.getMonthlyPayment();
-        if (finance == true) {
+            String financeOrNot;
+            System.out.println("Do you want to finance the car? (y/n)");
+            financeOrNot = scanner.nextLine().toLowerCase();
+            boolean finance = financeOrNot.equals("y");
+            SalesContract salesContract = new SalesContract(date, customerName,
+                    customerEmail, v, finance);
+            double monthlyPayment = salesContract.getMonthlyPayment();
+            if (finance) {
+                System.out.println("Your monthly payment is " + monthlyPayment);
+            }
+            contractDataManager.saveContract(salesContract);
+            dealership.removeVehicle(v);
+        } else if (leaseOrBuy.equals("lease")) {
+            System.out.println("Which vehicle do you want to lease? (Enter VIN)");
+            String chosenVehicle = scanner.nextLine();
+            Vehicle v = dealership.getVehicleByVin(chosenVehicle);
+            LeaseContract leaseContract = new LeaseContract(date, customerName,
+                    customerEmail, v);
+            double monthlyPayment = leaseContract.getMonthlyPayment();
             System.out.println("Your monthly payment is " + monthlyPayment);
+            contractDataManager.saveContract(leaseContract);
+            dealership.removeVehicle(v);
+        } else {
+            System.out.println("Invalid response. Try again.");
         }
-        contractDataManager.saveContract(salesContract);
-        dealership.removeVehicle(v);
     }
 }

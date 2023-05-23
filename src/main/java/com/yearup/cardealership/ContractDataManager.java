@@ -13,9 +13,6 @@ public class ContractDataManager {
             throw new RuntimeException(e);
         }
 
-        /*String contractInfo;
-        contractInfo = String.format("%s|%s|%s|%s|%d|%d\n", contract.getDate(), contract.getCustomerName(), contract.getCustomerEmail(),
-                contract.getVehicleSold(), contract.getTotalPrice(), contract.getMonthlyPayment());*/
         try {
             fileWriter.write(contract.getPersistanceString());
             fileWriter.close();
