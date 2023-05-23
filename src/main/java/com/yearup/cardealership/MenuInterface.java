@@ -1,4 +1,4 @@
-package com.yearup.car_dealership;
+package com.yearup.cardealership;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -49,7 +49,6 @@ public class MenuInterface {
     Contract contract;
     private DealershipFileManager dealershipFileManager;
 
-    public boolean finance;
 
 
 
@@ -262,19 +261,20 @@ public class MenuInterface {
 
     public void buyOrLeaseAVehicle() {
 
-        contract = ;
         LocalDate date = LocalDate.now();
         System.out.println("What is your full name?");
         String customerName = scanner.nextLine();
         System.out.println("What is your email address?");
         String customerEmail = scanner.nextLine();
-
+        System.out.println("Which vehicle do you want to buy? (Enter VIN)");
+        String chosenVehicle = scanner.nextLine();
+        Vehicle v = dealership.getVehicleByVin(chosenVehicle);
         SalesContract salesContract = new SalesContract(date, customerName,
-                customerEmail, contract.getVehicleSold());
+                customerEmail, v);
         String financeOrNot;
         System.out.println("Do you want to finance the car? (y/n)");
         financeOrNot = scanner.nextLine().toLowerCase();
-        finance = financeOrNot.equals("y");
+        boolean finance = financeOrNot.equals("y");
         double monthlyPayment = salesContract.getMonthlyPayment();
         if (finance == true) {
             System.out.println("Your monthly payment is " + monthlyPayment);

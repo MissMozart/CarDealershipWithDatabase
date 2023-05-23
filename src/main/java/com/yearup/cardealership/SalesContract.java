@@ -61,7 +61,6 @@ public class SalesContract extends Contract {
         double r;
         double n;
         double t;
-        boolean finance;
         double payment = 0;
         if (MenuInterface.finance = true) {
             if (vehiclePrice >= 10000) {
