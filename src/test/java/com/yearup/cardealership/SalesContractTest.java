@@ -1,4 +1,4 @@
-package com.yearup.car_dealership;
+package com.yearup.cardealership;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

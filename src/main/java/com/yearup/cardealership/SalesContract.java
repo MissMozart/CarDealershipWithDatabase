@@ -1,29 +1,26 @@
-package com.yearup.car_dealership;
+package com.yearup.cardealership;
 
 import java.time.LocalDate;
 
 public class SalesContract extends Contract {
     private int processingFee;
     private double salesTax;
+    private boolean finance;
+
+    public SalesContract(LocalDate date, String customerName, String customerEmail, Vehicle vehicleSold, boolean finance) {
+        super(date, customerName, customerEmail, vehicleSold);
+        this.finance = finance;
+    }
+
     public SalesContract(LocalDate date, String customerName, String customerEmail, Vehicle vehicleSold) {
         super(date, customerName, customerEmail, vehicleSold);
     }
 
     @Override
-    String getPersistanceString(Contract contract) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("SALE|").append(contract.getDate()).append("|")
-                .append(contract.getCustomerName()).append("|")
-                .append(contract.getCustomerEmail()).append("|")
-                .append(contract.getVehicleSold()).append("|")
-                .append(contract.getTotalPrice()).append("|")
-                .append(contract.getMonthlyPayment()).append("|")
-                .append("100|")
-                .append(getProcessingFee()).append("|")
-                .append(getSalesTax()).append("|")
-                .append().append("|")
-                .append(getMonthlyPayment()).append("|");
-        return sb.toString();
+    String getPersistanceString() {
+        return String.format("SALE|%s|%s|%s|%s|%.2f|100|%d|%.2f|%s|%.2f", getDate(), getCustomerName(), getCustomerEmail(),
+                getVehicleSold().getVin(), getTotalPrice(), getProcessingFee(), getSalesTax(), finance?"y":"n", getMonthlyPayment());
+
     }
 
 
@@ -62,7 +59,7 @@ public class SalesContract extends Contract {
         double n;
         double t;
         double payment = 0;
-        if (MenuInterface.finance = true) {
+        if (finance) {
             if (vehiclePrice >= 10000) {
                 r = 0.0425;
                 t = 4;

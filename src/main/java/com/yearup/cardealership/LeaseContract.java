@@ -1,4 +1,4 @@
-package com.yearup.car_dealership;
+package com.yearup.cardealership;
 
 import java.time.LocalDate;
 
@@ -8,7 +8,7 @@ public class LeaseContract extends Contract {
     }
 
     @Override
-    String getPersistanceString(Contract contract) {
+    String getPersistanceString() {
         return null;
     }
 

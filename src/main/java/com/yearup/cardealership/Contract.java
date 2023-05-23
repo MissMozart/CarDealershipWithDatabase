@@ -1,4 +1,4 @@
-package com.yearup.car_dealership;
+package com.yearup.cardealership;
 
 
 import java.time.LocalDate;
@@ -50,7 +50,7 @@ abstract class Contract {
         this.vehicleSold = vehicleSold;
     }
 
-    abstract String getPersistanceString(Contract contract);
+    abstract String getPersistanceString();
 
     abstract double getTotalPrice();
 

@@ -48,13 +48,14 @@ public class MenuInterface {
     Dealership dealership;
     Contract contract;
     private DealershipFileManager dealershipFileManager;
-
+    private ContractDataManager contractDataManager;
 
 
 
     private void init() {
         dealershipFileManager = new DealershipFileManager("01-DealershipVehicleList");
         dealership = dealershipFileManager.getDealership();
+        contractDataManager = new ContractDataManager();
     }
 
     public void display() {
@@ -112,6 +113,7 @@ public class MenuInterface {
                     break;
                 case "10":
                     buyOrLeaseAVehicle();
+                    break;
                 case "X":
                     System.out.println("Goodbye!");
                     System.exit(0);
@@ -269,15 +271,18 @@ public class MenuInterface {
         System.out.println("Which vehicle do you want to buy? (Enter VIN)");
         String chosenVehicle = scanner.nextLine();
         Vehicle v = dealership.getVehicleByVin(chosenVehicle);
-        SalesContract salesContract = new SalesContract(date, customerName,
-                customerEmail, v);
+
         String financeOrNot;
         System.out.println("Do you want to finance the car? (y/n)");
         financeOrNot = scanner.nextLine().toLowerCase();
         boolean finance = financeOrNot.equals("y");
+        SalesContract salesContract = new SalesContract(date, customerName,
+                customerEmail, v, finance);
         double monthlyPayment = salesContract.getMonthlyPayment();
         if (finance == true) {
             System.out.println("Your monthly payment is " + monthlyPayment);
         }
+        contractDataManager.saveContract(salesContract);
+        dealership.removeVehicle(v);
     }
 }

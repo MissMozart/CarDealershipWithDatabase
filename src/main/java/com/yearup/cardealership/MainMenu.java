@@ -1,4 +1,4 @@
-package com.yearup.car_dealership;
+package com.yearup.cardealership;
 
 public class MainMenu {
     public static void main(String[] args) {
