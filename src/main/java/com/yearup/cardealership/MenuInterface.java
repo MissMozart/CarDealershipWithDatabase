@@ -285,6 +285,7 @@ public class MenuInterface {
             if (finance) {
                 System.out.println("Your monthly payment is " + monthlyPayment);
             }
+            System.out.println("Congrats! The vehicle is yours.");
             contractDataManager.saveContract(salesContract);
             dealership.removeVehicle(v);
         } else if (leaseOrBuy.equals("lease")) {
@@ -294,6 +295,7 @@ public class MenuInterface {
             LeaseContract leaseContract = new LeaseContract(date, customerName,
                     customerEmail, v);
             double monthlyPayment = leaseContract.getMonthlyPayment();
+            System.out.println("Congrats! The vehicle is yours for the next 3 years.");
             System.out.println("Your monthly payment is " + monthlyPayment);
             contractDataManager.saveContract(leaseContract);
             dealership.removeVehicle(v);

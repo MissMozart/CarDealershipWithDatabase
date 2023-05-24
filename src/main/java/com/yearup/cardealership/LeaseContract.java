@@ -10,8 +10,10 @@ public class LeaseContract extends Contract {
 
     @Override
     String getPersistanceString() {
-        return String.format("LEASE|%s|%s|%s|%s|%.2f|%.2f|%.2f|%.2f|%.2f\n", getDate(), getCustomerName(), getCustomerEmail(),
-                getVehicleSold().getVin(), getTotalPrice(), expectedEndingValue(), getLeaseFee(), endingValueAndLeaseFee(), getMonthlyPayment());
+        return String.format("LEASE|%s|%s|%s|%d|%d|%s|%s|%s|%s|%s|%.2f|%.2f|%.2f|%.2f|%.2f\n", getDate(), getCustomerName(), getCustomerEmail(),
+                getVehicleSold().getOdometer(), getVehicleSold().getYear(), getVehicleSold().getMake(), getVehicleSold().getModel(),
+                getVehicleSold().getVehicleType(), getVehicleSold().getColor(), getVehicleSold().getVin(), getTotalPrice(),
+                expectedEndingValue(), getLeaseFee(), endingValueAndLeaseFee(), getMonthlyPayment());
     }
 
     double endingValueAndLeaseFee() {

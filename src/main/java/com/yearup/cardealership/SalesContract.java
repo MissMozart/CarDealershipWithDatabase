@@ -18,8 +18,10 @@ public class SalesContract extends Contract {
 
     @Override
     String getPersistanceString() {
-        return String.format("SALE|%s|%s|%s|%s|%.2f|100|%d|%.2f|%s|%.2f\n", getDate(), getCustomerName(), getCustomerEmail(),
-                getVehicleSold().getVin(), getTotalPrice(), getProcessingFee(), getSalesTax(), finance?"y":"n", getMonthlyPayment());
+        return String.format("SALE|%s|%s|%s|%d|%d|%s|%s|%s|%s|%s|%.2f|100|%d|%.2f|%s|%.2f\n", getDate(), getCustomerName(), getCustomerEmail(),
+                getVehicleSold().getOdometer(), getVehicleSold().getYear(), getVehicleSold().getMake(), getVehicleSold().getModel(),
+                getVehicleSold().getVehicleType(), getVehicleSold().getColor(), getVehicleSold().getVin(), getTotalPrice(),
+                getProcessingFee(), getSalesTax(), finance?"YES":"NO", getMonthlyPayment());
 
     }
 

@@ -8,8 +8,7 @@ abstract class Contract {
     String customerName;
     String customerEmail;
     Vehicle vehicleSold;
-    double price;
-    double monthlyPayment;
+
 
     public Contract(LocalDate date, String customerName, String customerEmail, Vehicle vehicleSold) {
         Date = date;
@@ -22,32 +21,16 @@ abstract class Contract {
         return Date;
     }
 
-    public void setDate(LocalDate date) {
-        Date = date;
-    }
-
     public String getCustomerName() {
         return customerName;
-    }
-
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
     }
 
     public String getCustomerEmail() {
         return customerEmail;
     }
 
-    public void setCustomerEmail(String customerEmail) {
-        this.customerEmail = customerEmail;
-    }
-
     public Vehicle getVehicleSold() {
         return vehicleSold;
-    }
-
-    public void setVehicleSold(Vehicle vehicleSold) {
-        this.vehicleSold = vehicleSold;
     }
 
     abstract String getPersistanceString();
